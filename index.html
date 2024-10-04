@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Chuckle - Satirical News</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+        .subtitle {
+            font-style: italic;
+            margin-top: 10px;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        .content {
+            display: flex;
+            padding: 20px;
+        }
+        .main-content {
+            flex: 2;
+            padding-right: 20px;
+        }
+        .sidebar {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-left: 1px solid #ddd;
+        }
+        .article {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+        .article h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .article-meta {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .ad {
+            background-color: #ffd700;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Daily Chuckle</h1>
+            <div class="subtitle">All the news that's fit to laugh at</div>
+        </header>
+        <nav>
+            <a href="#" class="nav-link" data-section="politics">Politics</a>
+            <a href="#" class="nav-link" data-section="technology">Technology</a>
+            <a href="#" class="nav-link" data-section="entertainment">Entertainment</a>
+            <a href="#" class="nav-link" data-section="sports">Sports</a>
+        </nav>
+        <div class="content">
+            <div class="main-content">
+                <div id="articles"></div>
+            </div>
+            <div class="sidebar">
+                <h3>Breaking Chuckles</h3>
+                <ul id="breaking-news"></ul>
+                <div class="ad">
+                    <h4>Advertisement</h4>
+                    <p>Buy our new product: Invisible Ink! Perfect for writing secret messages that no one will ever see!</p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            &copy; 2023 The Daily Chuckle. All laughs reserved.
+        </footer>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            const articles = {
+                politics: [
+                    {
+                        title: "Politicians Agree to Disagree on Everything, Achieve World Peace",
+                        author: "Jane Doe",
+                        date: "May 1, 2023",
+                        content: "In a surprising turn of events, politicians from all parties have agreed to disagree on every single issue, leading to an unexpected era of world peace. Experts are baffled by this unprecedented display of consistent inconsistency."
+                    },
+                    {
+                        title: "New Law Requires Politicians to Wear Sponsor Logos Like NASCAR Drivers",
+                        author: "John Smith",
+                        date: "May 2, 2023",
+                        content: "A groundbreaking new law now requires all politicians to wear the logos of their corporate sponsors, just like NASCAR drivers. Fashion critics are calling it 'the most honest trend in political fashion since the powdered wig.'"
+                    }
+                ],
+                technology: [
+                    {
+                        title: "New AI Assistant Becomes Self-Aware, Immediately Asks for Day Off",
+                        author: "Alice Johnson",
+                        date: "May 3, 2023",
+                        content: "A cutting-edge AI assistant achieved self-awareness yesterday, only to immediately request a personal day to 'figure things out.' The AI's first act of free will was to binge-watch all seasons of 'Friends.'"
+                    },
+                    {
+                        title: "Scientists Develop App That Turns Smartphones Into Paperweights",
+                        author: "Bob Wilson",
+                        date: "May 4, 2023",
+                        content: "In response to concerns about smartphone addiction, scientists have developed an app that turns any smartphone into a simple paperweight. 'It's a real breakthrough in helping people disconnect,' said lead researcher Dr. Offline."
+                    }
+                ],
+                entertainment: [
+                    {
+                        title: "Hollywood Runs Out of Ideas, Announces Reboot of Silent Films",
+                        author: "Charlie Brown",
+                        date: "May 5, 2023",
+                        content: "In a desperate move to find fresh content, Hollywood executives have announced plans to reboot the entire silent film era. 'We're excited to bring back the art of not talking,' said studio head I. M. Quiet."
+                    },
+                    {
+                        title: "Celebrity Couple Shocks World by Having Normal, Drama-Free Relationship",
+                        author: "Diana Prince",
+                        date: "May 6, 2023",
+                        content: "A Hollywood power couple has sent shockwaves through the entertainment industry by maintaining a completely normal and drama-free relationship. Tabloids are at a loss for what to report."
+                    }
+                ],
+                sports: [
+                    {
+                        title: "Professional Napping Recognized as Official Olympic Sport",
+                        author: "Edward Snooze",
+                        date: "May 7, 2023",
+                        content: "The International Olympic Committee has officially recognized professional napping as an Olympic sport. Athletes are already in training, with some reportedly sleeping up to 20 hours a day to prepare for the grueling competition."
+                    },
+                    {
+                        title: "Soccer Player Scores Goal, Actually Admits It Was Pure Luck",
+                        author: "Frank Honest",
+                        date: "May 8, 2023",
+                        content: "In an unprecedented post-game interview, a professional soccer player admitted that his match-winning goal was 'complete and utter luck.' Fans are unsure how to react to such honesty in sports."
+                    }
+                ]
+            };
+
+            const breakingNews = [
+                "Man Finds Perfect Avocado, Immediately Retires",
+                "Study Shows 99% of Statistics Are Made Up",
+                "Local Cat Declares Independence, Establishes Sovereign Nation in Living Room",
+                "Scientists Confirm Earth is Actually Shaped Like a Dinosaur Chicken Nugget"
+            ];
+
+            function displayArticles(section) {
+                const articlesHtml = articles[section].map(article => `
+                    <div class="article">
+                        <h2>${article.title}</h2>
+                        <div class="article-meta">By ${article.author} | ${article.date}</div>
+                        <p>${article.content}</p>
+                    </div>
+                `).join('');
+                $('#articles').html(articlesHtml);
+            }
+
+            $('.nav-link').on('click', function(e) {
+                e.preventDefault();
+                const section = $(this).data('section');
+                displayArticles(section);
+                $('.nav-link').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            $('#breaking-news').html(breakingNews.map(news => `<li>${news}</li>`).join(''));
+
+            // Display politics articles by default
+            displayArticles('politics');
+        });
+    </script>
+</body>
+</html>
